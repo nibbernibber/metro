@@ -4,23 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Metropolitan Luxe Limo</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_forward_ios" />
+
+    <!-- Material Symbols (FULL SET) -->
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+
+    <!-- Google Fonts (Stable, Safari-safe) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=TikTok+Sans:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet"
+    />
+
+    <!-- iOS PWA Meta -->
     <link rel="apple-touch-icon" href="https://i.ibb.co/JWvV1b8L/ourthing.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background-color: #000;
             color: #fff;
             line-height: 1.6;
@@ -30,14 +44,13 @@
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
         }
-        
+
         .app-container {
             min-height: 100vh;
             background-color: #000;
-            position: relative;
         }
-        
-        /* Header Styles */
+
+        /* Header */
         header {
             background-color: #000;
             padding: 16px 20px 8px;
@@ -46,14 +59,13 @@
             top: 0;
             z-index: 10;
         }
-        
+
         .header-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
         }
-        
+
         .company-name {
             font-family: 'TikTok Sans', sans-serif;
             font-weight: 800;
@@ -63,33 +75,30 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
+
         .menu-icon {
             font-size: 28px;
-            color: #fff;
             cursor: pointer;
         }
-        
+
         .user-greeting {
             font-size: 28px;
             font-weight: 700;
             margin-top: 8px;
         }
-        
-        /* Main Content */
+
+        /* Main */
         .main-content {
             padding: 20px;
         }
-        
+
         .section-title {
             font-family: 'TikTok Sans', sans-serif;
             font-weight: 700;
             font-size: 18px;
             margin-bottom: 20px;
-            color: #fff;
-            letter-spacing: -0.3px;
         }
-        
+
         /* Reservation Card */
         .reservation-card {
             background-color: #111;
@@ -97,572 +106,298 @@
             padding: 20px;
             margin-bottom: 25px;
             border: 1px solid #333;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
-        
+
         .limo-image-container {
-            width: 100%;
             height: 180px;
             border-radius: 15px;
             overflow: hidden;
             margin-bottom: 20px;
-            position: relative;
         }
-        
+
         .limo-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
+
         .limo-name {
             font-family: 'TikTok Sans', sans-serif;
             font-weight: 700;
             font-size: 22px;
             margin-bottom: 20px;
-            color: #fff;
         }
-        
+
         .driver-info {
             display: flex;
             align-items: center;
             margin-bottom: 20px;
         }
-        
+
         .driver-headshot {
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            object-fit: cover;
             margin-right: 15px;
             border: 3px solid #fff;
+            object-fit: cover;
         }
-        
-        .driver-details {
-            flex: 1;
-        }
-        
+
         .driver-label {
             font-size: 14px;
             color: #aaa;
-            margin-bottom: 4px;
         }
-        
+
         .driver-name {
-            font-weight: 600;
             font-size: 18px;
+            font-weight: 600;
         }
-        
-        /* Reservation Details */
-        .reservation-details {
-            margin-bottom: 20px;
-        }
-        
+
+        /* Details */
         .detail-row {
             display: flex;
             justify-content: space-between;
             padding: 12px 0;
             border-bottom: 1px solid #333;
         }
-        
-        .detail-row:last-child {
-            border-bottom: none;
-        }
-        
+
         .detail-label {
-            font-size: 15px;
             color: #aaa;
         }
-        
+
         .detail-value {
             font-weight: 600;
-            font-size: 16px;
             text-align: right;
         }
-        
-        /* Map Section */
+
+        /* Map */
         .map-container {
             height: 150px;
-            border-radius: 15px;
-            overflow: hidden;
             margin: 20px 0;
+            border-radius: 15px;
             background-color: #222;
-            position: relative;
             border: 1px solid #333;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        
+
         .map-placeholder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-family: 'Inter', sans-serif;
+            text-align: center;
+            opacity: 0.85;
         }
-        
+
         .map-placeholder .material-symbols-outlined {
-            font-size: 50px;
-            margin-bottom: 10px;
-            color: #fff;
-            opacity: 0.7;
+            font-size: 48px;
+            display: block;
+            margin-bottom: 8px;
         }
-        
-        .map-placeholder-text {
-            font-size: 16px;
-            font-weight: 500;
-        }
-        
-        .location-details {
-            padding: 5px 0;
-        }
-        
+
+        /* Locations */
         .location-row {
             display: flex;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
-        
+
         .location-dot {
             width: 10px;
             height: 10px;
             border-radius: 50%;
             margin-right: 12px;
-            margin-top: 4px;
+            margin-top: 6px;
         }
-        
-        .start-dot {
-            background-color: #34d399;
-        }
-        
-        .end-dot {
-            background-color: #f87171;
-        }
-        
-        .location-text {
-            flex: 1;
-        }
-        
+
+        .start-dot { background: #34d399; }
+        .end-dot { background: #f87171; }
+
         .location-title {
             font-weight: 600;
-            margin-bottom: 2px;
         }
-        
+
         .location-subtitle {
             font-size: 14px;
             color: #aaa;
         }
-        
-        /* Status Section - Fixed */
+
+        /* Status */
         .status-container {
-            margin: 25px 0;
+            margin-top: 25px;
         }
-        
+
         .status-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
-        
-        .status-title {
-            font-weight: 600;
-            font-size: 16px;
-        }
-        
+
         .status-badge {
             padding: 8px 16px;
             border-radius: 20px;
+            background: #10b981;
             font-weight: 700;
-            font-size: 14px;
-            color: #fff;
         }
-        
-        .status-clear .status-badge {
-            background-color: #10b981;
-            color: #fff;
-        }
-        
-        .status-issue .status-badge {
-            background-color: #ef4444;
-            color: #fff;
-        }
-        
-        .status-tentative .status-badge {
-            background-color: #f59e0b;
-            color: #000;
-        }
-        
+
         .status-message {
-            font-size: 16px;
             padding: 15px;
-            background-color: #1a1a1a;
             border-radius: 12px;
-            color: #fff;
-        }
-        
-        .status-clear .status-message {
+            background: #1a1a1a;
             border-left: 4px solid #10b981;
         }
-        
-        .status-issue .status-message {
-            border-left: 4px solid #ef4444;
-        }
-        
-        .status-tentative .status-message {
-            border-left: 4px solid #f59e0b;
-        }
-        
-        /* More Details Arrow */
-        .more-details {
-            display: flex;
-            justify-content: center;
-            margin: 30px 0 40px;
-        }
-        
-        .more-details-arrow {
-            background-color: #222;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .more-details-arrow:hover {
-            background-color: #333;
-        }
-        
-        .more-details-arrow .material-symbols-outlined {
-            font-size: 24px;
-            color: #fff;
-        }
-        
-        /* Additional Premium Features */
-        .premium-features {
-            margin-top: 30px;
-        }
-        
+
+        /* Premium Features */
         .features-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
+            margin-top: 20px;
         }
-        
+
         .feature-card {
-            background-color: #111;
+            background: #111;
+            border: 1px solid #333;
             border-radius: 15px;
             padding: 20px;
             text-align: center;
-            border: 1px solid #333;
-            transition: all 0.3s ease;
         }
-        
-        .feature-card:hover {
-            background-color: #1a1a1a;
-        }
-        
+
         .feature-icon {
             font-size: 30px;
-            margin-bottom: 12px;
-            color: #fff;
+            margin-bottom: 10px;
         }
-        
+
         .feature-title {
             font-weight: 600;
-            font-size: 16px;
-            margin-bottom: 5px;
-            color: #fff;
-            font-family: 'Inter', sans-serif;
+            margin-bottom: 4px;
         }
-        
+
         .feature-description {
             font-size: 13px;
             color: #aaa;
-            font-family: 'Inter', sans-serif;
         }
-        
-        /* Footer */
-        .app-footer {
+
+        footer {
             padding: 20px;
             text-align: center;
             border-top: 1px solid #333;
-            margin-top: 30px;
-        }
-        
-        .footer-text {
             color: #777;
             font-size: 14px;
+            margin-top: 30px;
         }
-        
-        /* Responsive Adjustments */
+
         @media (max-width: 380px) {
-            .user-greeting {
-                font-size: 24px;
-            }
-            
-            .limo-name {
-                font-size: 20px;
-            }
-            
             .features-grid {
                 grid-template-columns: 1fr;
             }
         }
-        
-        /* Active states for iOS */
-        .feature-card:active {
-            background-color: #1a1a1a;
-            transform: scale(0.98);
-        }
-        
-        .more-details-arrow:active {
-            background-color: #333;
-            transform: scale(0.95);
-        }
-        
-        /* Status selector - hidden in production but for demo */
-        .status-selector {
-            display: none;
-            margin: 15px 0;
-            padding: 15px;
-            background-color: #1a1a1a;
-            border-radius: 12px;
-        }
-        
-        .status-options {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .status-option {
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            background-color: #333;
-            border: none;
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .status-option.active {
-            background-color: #10b981;
-            color: #000;
-        }
     </style>
 </head>
+
 <body>
-    <div class="app-container">
-        <header>
-            <div class="header-top">
-                <div class="company-name">METROPOLITAN LUXE LIMO</div>
-                <div class="menu-icon">
-                    <span class="material-symbols-outlined">menu</span>
+<div class="app-container">
+
+    <header>
+        <div class="header-top">
+            <div class="company-name">METROPOLITAN LUXE LIMO</div>
+            <span class="material-symbols-outlined menu-icon">menu</span>
+        </div>
+        <div class="user-greeting">Hello, Nikita</div>
+    </header>
+
+    <main class="main-content">
+        <h2 class="section-title">Your Reservation</h2>
+
+        <div class="reservation-card">
+            <div class="limo-image-container">
+                <img class="limo-image" src="https://www.cardifflimo.com/wp-content/uploads/limo-1-1024x566.png">
+            </div>
+
+            <h2 class="limo-name">Lincoln Towncar (Stretch Limo)</h2>
+
+            <div class="driver-info">
+                <img class="driver-headshot" src="https://i.ibb.co/b5PyVpjb/itsmchaieals.png">
+                <div>
+                    <div class="driver-label">Your Driver</div>
+                    <div class="driver-name">Michael</div>
                 </div>
             </div>
-            <div class="user-greeting">Hello, James</div>
-        </header>
-        
-        <main class="main-content">
-            <h2 class="section-title">Your Reservation</h2>
-            
-            <div class="reservation-card">
-                <div class="limo-image-container">
-                    <img src="https://www.cardifflimo.com/wp-content/uploads/limo-1-1024x566.png" alt="Luxury Limousine" class="limo-image">
-                </div>
-                
-                <h2 class="limo-name">Lincoln Towncar (Stretch Limo)</h2>
-                
-                <div class="driver-info">
-                    <img src="https://i.ibb.co/b5PyVpjb/itsmchaieals.png" alt="Driver Michael" class="driver-headshot">
-                    <div class="driver-details">
-                        <div class="driver-label">Your Driver</div>
-                        <div class="driver-name">Michael</div>
-                    </div>
-                </div>
-                
-                <div class="reservation-details">
-                    <div class="detail-row">
-                        <div class="detail-label">Pickup Date & Time</div>
-                        <div class="detail-value">December 22nd @ 11:00 AM</div>
-                    </div>
-                    <div class="detail-row">
-                        <div class="detail-label">Estimated Trip Time</div>
-                        <div class="detail-value">Comfort Speed - 1 hr 33 min</div>
-                    </div>
-                </div>
-                
-                <div class="map-container">
-                    <div class="map-placeholder">
-                        <span class="material-symbols-outlined">map</span>
-                        <div class="map-placeholder-text">Interactive Map</div>
-                    </div>
-                </div>
-                
-                <div class="location-details">
-                    <div class="location-row">
-                        <div class="location-dot start-dot"></div>
-                        <div class="location-text">
-                            <div class="location-title">Washingtonville, NY</div>
-                            <div class="location-subtitle">Pickup Location</div>
-                        </div>
-                    </div>
-                    <div class="location-row">
-                        <div class="location-dot end-dot"></div>
-                        <div class="location-text">
-                            <div class="location-title">New York, NY</div>
-                            <div class="location-subtitle">Drop-off Location</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="status-container status-clear">
-                    <div class="status-header">
-                        <div class="status-title">Reservation Status</div>
-                        <div class="status-badge">CLEAR</div>
-                    </div>
-                    <div class="status-message">
-                        Your limo is ready and will arrive promptly at your scheduled pickup time.
-                    </div>
+
+            <div class="detail-row">
+                <div class="detail-label">Pickup Date & Time</div>
+                <div class="detail-value">December 22nd @ 11:00 AM</div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">Estimated Trip Time</div>
+                <div class="detail-value">1 hr 33 min</div>
+            </div>
+
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <span class="material-symbols-outlined">map</span>
+                    Interactive Map
                 </div>
             </div>
-            
-            <div class="more-details">
-                <div class="more-details-arrow">
-                    <span class="material-symbols-outlined">arrow_forward_ios</span>
+
+            <div class="location-row">
+                <div class="location-dot start-dot"></div>
+                <div>
+                    <div class="location-title">Washingtonville, NY</div>
+                    <div class="location-subtitle">Pickup Location</div>
                 </div>
             </div>
-            
-            <div class="premium-features">
-                <h2 class="section-title">Premium Services</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <span class="material-symbols-outlined">wine_bar</span>
-                        </div>
-                        <div class="feature-title">Champagne Service</div>
-                        <div class="feature-description">Premium beverages available upon request</div>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <span class="material-symbols-outlined">wifi</span>
-                        </div>
-                        <div class="feature-title">High-Speed WiFi</div>
-                        <div class="feature-description">Stay connected throughout your journey</div>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <span class="material-symbols-outlined">headphones</span>
-                        </div>
-                        <div class="feature-title">Entertainment</div>
-                        <div class="feature-description">Premium sound system & media selection</div>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <span class="material-symbols-outlined">security</span>
-                        </div>
-                        <div class="feature-title">Priority Support</div>
-                        <div class="feature-description">24/7 concierge assistance available</div>
-                    </div>
+
+            <div class="location-row">
+                <div class="location-dot end-dot"></div>
+                <div>
+                    <div class="location-title">New York, NY</div>
+                    <div class="location-subtitle">Drop-off Location</div>
                 </div>
             </div>
-            
-            <!-- Hidden status selector for demo purposes -->
-            <div class="status-selector" id="statusSelector">
-                <div>Demo: Change Status</div>
-                <div class="status-options">
-                    <button class="status-option active" data-status="clear">Clear</button>
-                    <button class="status-option" data-status="issue">Issue</button>
-                    <button class="status-option" data-status="tentative">Tentative</button>
+
+            <div class="status-container">
+                <div class="status-header">
+                    <div>Reservation Status</div>
+                    <div class="status-badge">CLEAR</div>
+                </div>
+                <div class="status-message">
+                    Your limo is ready and will arrive promptly at your scheduled pickup time.
                 </div>
             </div>
-        </main>
-        
-        <footer class="app-footer">
-            <div class="footer-text">© 2025 Metropolitan Luxe Limo. All rights reserved.</div>
-        </footer>
-    </div>
-    
-    <script>
-        // For demonstration purposes - change reservation status
-        document.addEventListener('DOMContentLoaded', function() {
-            const statusOptions = document.querySelectorAll('.status-option');
-            const statusContainer = document.querySelector('.status-container');
-            const statusBadge = document.querySelector('.status-badge');
-            const statusMessage = document.querySelector('.status-message');
-            
-            // Status messages based on selection
-            const statusMessages = {
-                clear: "Your limo is ready and will arrive promptly at your scheduled pickup time.",
-                issue: "Your limo is currently unavailable. Please contact our support team for alternative arrangements.",
-                tentative: "Your limo is still undergoing maintenance. We will confirm availability within 24 hours."
-            };
-            
-            // Status badge text and colors
-            const statusConfig = {
-                clear: { text: "CLEAR", badgeClass: "status-clear", messageClass: "status-clear" },
-                issue: { text: "ISSUE", badgeClass: "status-issue", messageClass: "status-issue" },
-                tentative: { text: "TENTATIVE", badgeClass: "status-tentative", messageClass: "status-tentative" }
-            };
-            
-            statusOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    const status = this.getAttribute('data-status');
-                    
-                    // Update active button
-                    statusOptions.forEach(opt => opt.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Update status display
-                    const config = statusConfig[status];
-                    
-                    // Remove existing status classes
-                    statusContainer.classList.remove('status-clear', 'status-issue', 'status-tentative');
-                    statusMessage.classList.remove('status-clear', 'status-issue', 'status-tentative');
-                    
-                    // Add new status classes
-                    statusContainer.classList.add(config.badgeClass);
-                    statusMessage.classList.add(config.messageClass);
-                    
-                    // Update badge text and message
-                    statusBadge.textContent = config.text;
-                    statusBadge.className = `status-badge`;
-                    statusMessage.textContent = statusMessages[status];
-                });
-            });
-            
-            // More details arrow animation
-            const moreDetailsArrow = document.querySelector('.more-details-arrow');
-            moreDetailsArrow.addEventListener('click', function() {
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                    // In a real app, this would navigate to more details
-                    alert("More details would be shown here in the full application.");
-                }, 150);
-            });
-            
-            // Add iOS-specific optimizations
-            if (navigator.userAgent.match(/(iPhone|iPad|iPod)/i)) {
-                // Prevent zoom on input focus for iOS
-                document.addEventListener('touchstart', function() {}, {passive: true});
-                
-                // Improve touch feedback
-                document.querySelectorAll('.feature-card, .more-details-arrow').forEach(el => {
-                    el.style.cursor = 'pointer';
-                });
-            }
-        });
-    </script>
+        </div>
+
+        <h2 class="section-title">Premium Services</h2>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="material-symbols-outlined feature-icon">wine_bar</span>
+                <div class="feature-title">Champagne Service</div>
+                <div class="feature-description">Available upon request</div>
+            </div>
+
+            <div class="feature-card">
+                <span class="material-symbols-outlined feature-icon">wifi</span>
+                <div class="feature-title">High-Speed WiFi</div>
+                <div class="feature-description">Stay connected</div>
+            </div>
+
+            <div class="feature-card">
+                <span class="material-symbols-outlined feature-icon">headphones</span>
+                <div class="feature-title">Entertainment</div>
+                <div class="feature-description">Premium sound system</div>
+            </div>
+
+            <div class="feature-card">
+                <span class="material-symbols-outlined feature-icon">security</span>
+                <div class="feature-title">Priority Support</div>
+                <div class="feature-description">24/7 concierge</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        © 2025 Metropolitan Luxe Limo. All rights reserved.
+    </footer>
+
+</div>
 </body>
 </html>
