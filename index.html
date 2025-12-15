@@ -39,7 +39,7 @@
             max-width: 500px;
             margin: 0 auto;
             /* CRITICAL: Prevent the body itself from scrolling to stop iOS 'rubber-banding' */
-            overflow: hidden; 
+            overflow: hidden;
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
         }
@@ -59,21 +59,21 @@
             padding: 16px 20px 8px;
             border-bottom: 1px solid #333;
             /* CRITICAL: Keep header static within the flex layout, prevent shrinking */
-            position: static; 
+            position: static;
             z-index: 10;
-            flex-shrink: 0; 
+            flex-shrink: 0;
         }
 
         /* NEW CRITICAL ELEMENT: The dedicated scrollable content area */
         .scroll-container {
             overflow-y: scroll;
             /* CRITICAL for smooth, native-like scrolling on iOS */
-            -webkit-overflow-scrolling: touch; 
+            -webkit-overflow-scrolling: touch;
             /* Allows this container to take up all remaining vertical space */
-            flex-grow: 1; 
+            flex-grow: 1;
         }
         
-        /* --- Existing Styles (Unchanged but included for completeness) --- */
+        /* --- Existing Styles --- */
 
         .header-top {
             display: flex;
@@ -192,22 +192,15 @@
             border-radius: 15px;
             background-color: #222;
             border: 1px solid #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            overflow: hidden; /* Ensure the map respects the border-radius */
         }
 
-        .map-placeholder {
-            text-align: center;
-            opacity: 0.85;
+        .embedded-map { /* New class for the iframe */
+            width: 100%;
+            height: 100%;
+            border: none;
         }
-
-        .map-placeholder .material-symbols-outlined {
-            font-size: 48px;
-            display: block;
-            margin-bottom: 8px;
-        }
-
+        
         /* Locations */
         .location-row {
             display: flex;
@@ -350,10 +343,14 @@
                 </div>
 
                 <div class="map-container">
-                    <div class="map-placeholder">
-                        <span class="material-symbols-outlined">map</span>
-                        Interactive Map
-                    </div>
+                    <iframe 
+                        class="embedded-map"
+                        loading="lazy"
+                        allowfullscreen
+                        referrerpolicy="no-referrer-when-downgrade"
+                        src="https://www.google.com/maps/embed/v1/directions?origin=Washingtonville,NY&destination=New+York,NY&mode=driving"
+                        title="Interactive map showing the driving route from Washingtonville, NY to New York, NY"
+                    ></iframe>
                 </div>
 
                 <div class="location-row">
