@@ -192,15 +192,17 @@
             border-radius: 15px;
             background-color: #222;
             border: 1px solid #333;
-            overflow: hidden; /* Ensure the map respects the border-radius */
+            overflow: hidden; 
+            /* Removed flex centering, as the image will fill the container */
+            display: block; /* Ensure it behaves like a container for an image */
         }
 
-        .embedded-map { 
+        .map-image { /* New class for the map image */
             width: 100%;
             height: 100%;
-            border: none;
+            object-fit: cover; /* Ensures the map image covers the container */
         }
-        
+
         /* Locations */
         .location-row {
             display: flex;
@@ -343,14 +345,11 @@
                 </div>
 
                 <div class="map-container">
-                    <iframe 
-                        class="embedded-map"
-                        loading="lazy"
-                        allowfullscreen
-                        referrerpolicy="no-referrer-when-downgrade"
-                        src="https://www.openstreetmap.org/directions?route=Washingtonville, NY%2C US%20to%20New%20York, NY%2C US"
-                        title="Interactive OpenStreetMap showing the driving route from Washingtonville, NY to New York, NY"
-                    ></iframe>
+                    <img 
+                        class="map-image"
+                        src="https://i.ibb.co/PvBbc4rV/mapsimage.png"
+                        alt="Static map image for the route"
+                    />
                 </div>
 
                 <div class="location-row">
