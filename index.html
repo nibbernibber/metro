@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Metropolitan Luxe Limo</title>
 
-    <!-- Material Symbols -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=TikTok+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=TikTok+Sans:wght@300;400;600;700;800;900&display=swap"
+        rel="stylesheet"
+    />
 
-    <!-- iOS PWA -->
     <link rel="apple-touch-icon" href="https://i.ibb.co/JWvV1b8L/ourthing.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -23,40 +26,54 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100%;
-            overflow: hidden; /* 🔒 prevent body scrolling */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #000;
+            background-color: #000;
             color: #fff;
+            line-height: 1.6;
+            height: 100vh;
             max-width: 500px;
             margin: 0 auto;
+            /* CRITICAL: Prevent the body itself from scrolling to stop iOS 'rubber-banding' */
+            overflow: hidden; 
+            overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* App Shell */
         .app-container {
-            height: 100dvh; /* ✅ correct iOS viewport */
+            /* CRITICAL: Use Flexbox to manage the fixed header and the scrollable content */
+            height: 100%;
+            min-height: 100vh;
+            background-color: #000;
             display: flex;
             flex-direction: column;
-            background: #000;
         }
-
+        
         /* Header */
         header {
-            background: #000;
-            padding: calc(16px + env(safe-area-inset-top)) 20px 8px;
+            background-color: #000;
+            padding: 16px 20px 8px;
             border-bottom: 1px solid #333;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            isolation: isolate; /* 🔒 prevents bleed */
+            /* CRITICAL: Keep header static within the flex layout, prevent shrinking */
+            position: static; 
+            z-index: 10;
+            flex-shrink: 0; 
         }
+
+        /* NEW CRITICAL ELEMENT: The dedicated scrollable content area */
+        .scroll-container {
+            overflow-y: scroll;
+            /* CRITICAL for smooth, native-like scrolling on iOS */
+            -webkit-overflow-scrolling: touch; 
+            /* Allows this container to take up all remaining vertical space */
+            flex-grow: 1; 
+        }
+        
+        /* --- Existing Styles (Unchanged but included for completeness) --- */
 
         .header-top {
             display: flex;
@@ -68,10 +85,15 @@
             font-family: 'TikTok Sans', sans-serif;
             font-weight: 800;
             font-size: 22px;
+            letter-spacing: -0.5px;
+            background: linear-gradient(to right, #fff, #ccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .menu-icon {
             font-size: 28px;
+            cursor: pointer;
         }
 
         .user-greeting {
@@ -80,41 +102,320 @@
             margin-top: 8px;
         }
 
-        /* Main scroll area */
+        /* Main */
         .main-content {
-            flex: 1;
-            overflow-y: auto; /* ✅ ONLY this scrolls */
-            -webkit-overflow-scrolling: touch;
             padding: 20px;
         }
 
         .section-title {
+            font-family: 'TikTok Sans', sans-serif;
             font-weight: 700;
+            font-size: 18px;
             margin-bottom: 20px;
         }
 
-        /* Footer */
+        /* Reservation Card */
+        .reservation-card {
+            background-color: #111;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid #333;
+        }
+
+        .limo-image-container {
+            height: 180px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .limo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .limo-name {
+            font-family: 'TikTok Sans', sans-serif;
+            font-weight: 700;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .driver-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .driver-headshot {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            border: 3px solid #fff;
+            object-fit: cover;
+        }
+
+        .driver-label {
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        .driver-name {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Details */
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .detail-label {
+            color: #aaa;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* Map */
+        .map-container {
+            height: 150px;
+            margin: 20px 0;
+            border-radius: 15px;
+            background-color: #222;
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-placeholder {
+            text-align: center;
+            opacity: 0.85;
+        }
+
+        .map-placeholder .material-symbols-outlined {
+            font-size: 48px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Locations */
+        .location-row {
+            display: flex;
+            margin-bottom: 12px;
+        }
+
+        .location-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 12px;
+            margin-top: 6px;
+        }
+
+        .start-dot { background: #34d399; }
+        .end-dot { background: #f87171; }
+
+        .location-title {
+            font-weight: 600;
+        }
+
+        .location-subtitle {
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Status */
+        .status-container {
+            margin-top: 25px;
+        }
+
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .status-badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: #b91010;
+            font-weight: 700;
+        }
+
+        .status-message {
+            padding: 15px;
+            border-radius: 12px;
+            background: #1a1a1a;
+            border-left: 4px solid #10b981;
+        }
+
+        /* Premium Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .feature-card {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .feature-description {
+            font-size: 13px;
+            color: #aaa;
+        }
+
         footer {
             padding: 20px;
             text-align: center;
             border-top: 1px solid #333;
             color: #777;
             font-size: 14px;
+            margin-top: 30px;
+            flex-shrink: 0; /* Prevents footer content from being compressed */
+        }
+
+        @media (max-width: 380px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="app-container"> 
-        <header> 
-            <div class="header-top"> 
-                <div class="company-name">METROPOLITAN LUXE LIMO</div> 
-                <span class="material-symbols-outlined menu-icon">menu</span>
-            </div> <div class="user-greeting">Hello, Nikita</div>
-        </header> <main class="main-content"> 
-            <h2 class="section-title">Your Reservation</h2> 
+<div class="app-container">
+
+    <header>
+        <div class="header-top">
+            <div class="company-name">METROPOLITAN LUXE LIMO</div>
+            <span class="material-symbols-outlined menu-icon">menu</span>
+        </div>
+        <div class="user-greeting">Hello, Nikita</div>
+    </header>
+    
+    <div class="scroll-container">
+
+        <main class="main-content">
+            <h2 class="section-title">Your Reservation</h2>
+
             <div class="reservation-card">
                 <div class="limo-image-container">
                     <img class="limo-image" src="https://www.cardifflimo.com/wp-content/uploads/limo-1-1024x566.png">
-                </div> <h2 class="limo-name">Lincoln Towncar (Stretch Limo)</h2> 
-                <div class="driver-info"> <img class="driver-headshot" src="https://i.ibb.co/b5PyVpjb/itsmchaieals.png"> <div> <div class="driver-label">Your Driver</div> <div class="driver-name">Michael</div> </div> </div> <div class="detail-row"> <div class="detail-label">Pickup Date & Time</div> <div class="detail-value">December 22nd @ 11:00 AM</div> </div> <div class="detail-row"> <div class="detail-label">Estimated Trip Time</div> <div class="detail-value">1 hr 33 min</div> </div> <div class="map-container"> <div class="map-placeholder"> <span class="material-symbols-outlined">map</span> Interactive Map </div> </div> <div class="location-row"> <div class="location-dot start-dot"></div> <div> <div class="location-title">Washingtonville, NY</div> <div class="location-subtitle">Pickup Location</div> </div> </div> <div class="location-row"> <div class="location-dot end-dot"></div> <div> <div class="location-title">New York, NY</div> <div class="location-subtitle">Drop-off Location</div> </div> </div> <div class="status-container"> <div class="status-header"> <div>Reservation Status</div> <div class="status-badge">REPAIR</div> </div> <div class="status-message"> Your limo is under repair, and it's availability is not guaranteed at this time. </div> </div> </div> <h2 class="section-title">Premium Services</h2> <div class="features-grid"> <div class="feature-card"> <span class="material-symbols-outlined feature-icon">wine_bar</span> <div class="feature-title">Champagne Service</div> <div class="feature-description">Available upon request</div> </div> <div class="feature-card"> <span class="material-symbols-outlined feature-icon">wifi</span> <div class="feature-title">High-Speed WiFi</div> <div class="feature-description">Stay connected</div> </div> <div class="feature-card"> <span class="material-symbols-outlined feature-icon">headphones</span> <div class="feature-title">Entertainment</div> <div class="feature-description">Premium sound system</div> </div> <div class="feature-card"> <span class="material-symbols-outlined feature-icon">security</span> <div class="feature-title">Priority Support</div> <div class="feature-description">24/7 concierge</div> </div> </div> </main> <footer> © 2025 Metropolitan Luxe Limo. All rights reserved. </footer> </div> </body> </html>
+                </div>
+
+                <h2 class="limo-name">Lincoln Towncar (Stretch Limo)</h2>
+
+                <div class="driver-info">
+                    <img class="driver-headshot" src="https://i.ibb.co/b5PyVpjb/itsmchaieals.png">
+                    <div>
+                        <div class="driver-label">Your Driver</div>
+                        <div class="driver-name">Michael</div>
+                    </div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-label">Pickup Date & Time</div>
+                    <div class="detail-value">December 22nd @ 11:00 AM</div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-label">Estimated Trip Time</div>
+                    <div class="detail-value">1 hr 33 min</div>
+                </div>
+
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <span class="material-symbols-outlined">map</span>
+                        Interactive Map
+                    </div>
+                </div>
+
+                <div class="location-row">
+                    <div class="location-dot start-dot"></div>
+                    <div>
+                        <div class="location-title">Washingtonville, NY</div>
+                        <div class="location-subtitle">Pickup Location</div>
+                    </div>
+                </div>
+
+                <div class="location-row">
+                    <div class="location-dot end-dot"></div>
+                    <div>
+                        <div class="location-title">New York, NY</div>
+                        <div class="location-subtitle">Drop-off Location</div>
+                    </div>
+                </div>
+
+                <div class="status-container">
+                    <div class="status-header">
+                        <div>Reservation Status</div>
+                        <div class="status-badge">REPAIR</div>
+                    </div>
+                    <div class="status-message">
+                        Your limo is under repair, and it's availability is not guaranteed at this time.
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Premium Services</h2>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="material-symbols-outlined feature-icon">wine_bar</span>
+                    <div class="feature-title">Champagne Service</div>
+                    <div class="feature-description">Available upon request</div>
+                </div>
+
+                <div class="feature-card">
+                    <span class="material-symbols-outlined feature-icon">wifi</span>
+                    <div class="feature-title">High-Speed WiFi</div>
+                    <div class="feature-description">Stay connected</div>
+                </div>
+
+                <div class="feature-card">
+                    <span class="material-symbols-outlined feature-icon">headphones</span>
+                    <div class="feature-title">Entertainment</div>
+                    <div class="feature-description">Premium sound system</div>
+                </div>
+
+                <div class="feature-card">
+                    <span class="material-symbols-outlined feature-icon">security</span>
+                    <div class="feature-title">Priority Support</div>
+                    <div class="feature-description">24/7 concierge</div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            © 2025 Metropolitan Luxe Limo. All rights reserved.
+        </footer>
+        
+    </div> </div>
+</body>
+</html>
